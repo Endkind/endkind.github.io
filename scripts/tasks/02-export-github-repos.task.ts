@@ -2,6 +2,7 @@ import {Task, type TaskContext} from '../core/Task.js'
 import type {GitHubRepo} from '@src/ts/schemas/github.js';
 import {mkdir, writeFile} from "node:fs/promises";
 import {dirname, resolve} from "node:path";
+import * as console from "node:console";
 
 export default class ExampleTask extends Task {
     readonly name = 'Export GitHub Repos'
@@ -11,7 +12,7 @@ export default class ExampleTask extends Task {
         const data = await this.get_repos_data(owner);
         const output_path = resolve(_context.rootDir, 'src/json/github/repos.json');
 
-        await mkdir(dirname(output_path), { recursive: true });
+        await mkdir(dirname(output_path), {recursive: true});
         await writeFile(output_path, JSON.stringify(data, null, 2));
     }
 
@@ -76,17 +77,22 @@ export default class ExampleTask extends Task {
     }
 
     private async get_pages_url(owner: string, repo: string): Promise<string | null> {
-        const default_pages_url = `https://${owner}.github.io/${repo}`.toLowerCase();
+        try {
+            const default_pages_url = `https://${owner}.github.io/${repo}`.toLowerCase();
 
-        //region: `https://{owner}.github.io/{repo}`
-        let response = await fetch(default_pages_url);
+            //region: `https://{owner}.github.io/{repo}`
+            let response = await fetch(default_pages_url);
 
-        if (response.ok) {
-            return default_pages_url;
+            if (response.ok) {
+                return default_pages_url;
+            }
+            //endregion
+
+            //TODO: Extend for non `https://{owner}.github.io/{repo}` GitHub Pages URL
+        } catch (error) {
+            console.error('Error finding GitHub Pages URL:', error);
+            throw error;
         }
-        //endregion
-
-        //TODO: Extend for non `https://{owner}.github.io/{repo}` GitHub Pages URL
 
         return null;
     }
