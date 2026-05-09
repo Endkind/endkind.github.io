@@ -15,7 +15,7 @@ watchEffect(() => {
 
 onMounted(async () => {
   try {
-  repos.value = await GitHubUtils.get_repos_data(profile.name);
+    repos.value = await GitHubUtils.get_repos_data(profile.name);
   } catch {
     repos.value = repos_json as GitHubRepo[];
   }
@@ -24,7 +24,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="mx-20">
+  <div class="md:mx-20">
     <nav class="mb-6">
       <Navbar/>
     </nav>
