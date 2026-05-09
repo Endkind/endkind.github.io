@@ -3,6 +3,12 @@
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "types": ["vite/client"],
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@json/*": ["./src/json/*"],
+      "@components/*": ["./src/components/*"],
+      "@ts/*": ["./src/ts/*"]
+    },
 
     /* Linting */
     "noUnusedLocals": true,
