@@ -28,7 +28,8 @@
   <div class="card bg-base-100 w-96 shadow-sm">
     <div class="card-body">
       <div class="flex justify-between">
-        <a :href="props.repo.url" target="_blank" class="card-title">{{ props.repo.name }}</a> //TODO: https://api.github.com/repos/{owner}/{repo}/commits/{ref}/check-runs | https://api.github.com/repos/endkind/papermc/commits/main/check-runs
+        <a :href="props.repo.url" target="_blank" class="card-title">{{ props.repo.name }}</a>
+        <!-- TODO: https://api.github.com/repos/{owner}/{repo}/commits/{ref}/check-runs | https://api.github.com/repos/endkind/papermc/commits/main/check-runs -->
         <div class="flex gap-1">
           <div v-if="props.repo.is_template" class="badge">Template</div>
           <div v-if="props.repo.archived" class="badge">Archived</div>
