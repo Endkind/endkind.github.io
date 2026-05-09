@@ -8,6 +8,9 @@ on:
 
   workflow_dispatch:
 
+  schedule:
+    - cron: "0 3 * * *" # every day at 3:00 AM
+
 permissions:
   contents: read
   pages: write
