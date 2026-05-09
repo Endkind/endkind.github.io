@@ -10,22 +10,25 @@
     repo: GitHubRepo,
   }>()
 
-  const getLanguageColor = (language: string | null): string => {
-    if (!language) return "#9ca3af";
-    return (languageColors as Record<string, string>)[language] ?? "#9ca3af";
-  };
+  const default_color = "#9CA3AF";
 
   const codeForkSvg = codeForkSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
   const starSvg = starSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
   const githubSvg = githubSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
   const globeSvg = globeSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
+
+  function getLanguageColor(language: string | null): string {
+    if (!language) return default_color;
+    return (languageColors as Record<string, string>)[language] ?? default_color;
+  }
+
 </script>
 
 <template>
   <div class="card bg-base-100 w-96 shadow-sm">
     <div class="card-body">
       <div class="flex justify-between">
-        <a :href="props.repo.url" target="_blank" class="card-title">{{ props.repo.name }}</a>
+        <a :href="props.repo.url" target="_blank" class="card-title">{{ props.repo.name }}</a> //TODO: https://api.github.com/repos/{owner}/{repo}/commits/{ref}/check-runs | https://api.github.com/repos/endkind/papermc/commits/main/check-runs
         <div class="flex gap-1">
           <div v-if="props.repo.is_template" class="badge">Template</div>
           <div v-if="props.repo.archived" class="badge">Archived</div>
