@@ -45,7 +45,7 @@
 <template>
   <div class="navbar bg-base-100 shadow-sm relative z-50">
     <div class="flex-1">
-      <a class="btn btn-ghost text-xl">
+      <a href="/" class="btn btn-ghost text-xl">
         <img :src="profile.avatar_url" class="h-10 w-auto rounded-full" :alt="profile.name" />
         {{ profile.name }}
       </a>
