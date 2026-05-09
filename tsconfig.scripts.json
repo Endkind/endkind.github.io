@@ -9,11 +9,11 @@
     "skipLibCheck": true,
     "strict": true,
     "paths": {
-      "@src/*": ["./src/*"]
+      "@src/*": ["./src/*"],
+      "@ts/*": ["./src/ts/*"]
     },
     "outDir": "./scripts/dist",
     "rootDir": "."
   },
   "include": ["scripts/**/*.ts"]
 }
-
