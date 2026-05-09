@@ -7,7 +7,7 @@ export default class ExampleTask extends Task {
   readonly name = 'Get Data'
 
   async run(_context: TaskContext): Promise<void> {
-    const owner = process.env.GITHUB_REPOSITORY_OWNER ?? 'Test'
+    const owner = process.env.GITHUB_REPOSITORY_OWNER ?? 'Endkind'
     const data = await this.get_data(owner);
     const output_path_favicon = resolve(_context.rootDir, 'public/favicon.png');
     const output_path_data = resolve(_context.rootDir, 'src/json/github/profile.json');
