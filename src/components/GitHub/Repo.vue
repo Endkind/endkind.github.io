@@ -3,6 +3,8 @@
   import languageColors from "@json/github/language_colors.json";
   import codeForkSvgRaw from "@assets/Font-Awesome/code-fork.svg?raw";
   import starSvgRaw from "@assets/Bootstrap-Icons/start.svg?raw";
+  import githubSvgRaw from "@assets/Bootstrap-Icons/github.svg?raw";
+  import globeSvgRaw from "@assets/Bootstrap-Icons/globe.svg?raw";
 
   const props = defineProps<{
     repo: GitHubRepo,
@@ -15,6 +17,8 @@
 
   const codeForkSvg = codeForkSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
   const starSvg = starSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
+  const githubSvg = githubSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
+  const globeSvg = globeSvgRaw.replace("<svg ", "<svg class=\"w-3 h-3\" ");
 </script>
 
 <template>
@@ -44,7 +48,14 @@
           <span aria-hidden="true" v-html="codeForkSvg"></span>
           {{ props.repo.forks }}
         </a>
-<!--        <a :href="props.repo.url" target="_blank" class="btn btn-primary">Visit Repo</a>-->
+        <a :href="props.repo.pages_url" target="_blank" class="badge gap-1 text-base-content" v-if="props.repo.pages_url">
+          <span aria-hidden="true" v-html="githubSvg"></span>
+          Visit GitHub Pages
+        </a>
+        <a :href="props.repo.homepage" target="_blank" class="badge gap-1 text-base-content" v-if="props.repo.homepage">
+          <span aria-hidden="true" v-html="globeSvg"></span>
+          Visit Homepage
+        </a>
       </div>
     </div>
   </div>
