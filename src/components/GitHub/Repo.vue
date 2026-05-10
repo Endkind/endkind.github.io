@@ -33,6 +33,7 @@
         <div class="flex gap-1">
           <a
               :href="`https://github.com/new?template_name=${encodeURIComponent(props.repo.name)}&template_owner=${encodeURIComponent(props.repo.owner.name)}`"
+              target="_blank"
               v-if="props.repo.is_template"
               class="badge">
             Template
