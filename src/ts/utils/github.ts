@@ -34,6 +34,9 @@ export class GitHubUtils {
                             forks: repo.forks_count,
                             open_issues: repo.open_issues_count,
                             watchers: repo.watchers > 0,
+                            created_at: repo.created_at,
+                            updated_at: repo.updated_at,
+                            pushed_at: repo.pushed_at,
                             owner: {
                                 id: repo.owner.id,
                                 name: repo.owner.login,
@@ -51,6 +54,10 @@ export class GitHubUtils {
                     }
                     if (b.repo.forks !== a.repo.forks) {
                         return b.repo.forks - a.repo.forks;
+                    }
+                    const pushedAtDiff = b.repo.pushed_at.localeCompare(a.repo.pushed_at);
+                    if (pushedAtDiff !== 0) {
+                        return pushedAtDiff;
                     }
                     return a.index - b.index;
                 })

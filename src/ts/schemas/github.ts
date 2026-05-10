@@ -20,5 +20,8 @@ export type GitHubRepo = {
   forks: number;
   open_issues: number;
   watchers: boolean;
+  created_at: string;
+  updated_at: string;
+  pushed_at: string;
   owner: GitHubUser;
 };
